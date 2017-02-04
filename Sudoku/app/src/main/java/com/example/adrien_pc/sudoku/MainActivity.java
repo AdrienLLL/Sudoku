@@ -16,10 +16,12 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btaction1 = (Button)findViewById(R.id.LEVEL1);
+        Button btaction1 = (Button)findViewById(R.id.Facile);
         btaction1.setOnClickListener(this);
-        Button btaction2 = (Button)findViewById(R.id.LEVEL2);
+        Button btaction2 = (Button)findViewById(R.id.Moyen);
         btaction2.setOnClickListener(this);
+        Button btaction3 = (Button)findViewById(R.id.Difficile);
+        btaction3.setOnClickListener(this);
 
     }
 
@@ -29,12 +31,17 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         Bundle bun = new Bundle();
         switch(v.getId()){
 
-            case R.id.LEVEL1 :
+            case R.id.Facile :
                 intent.putExtras(bun);
                 startActivity(intent);
                 break;
 
-            case R.id.LEVEL2 :
+            case R.id.Moyen :
+                intent.putExtras(bun);
+                startActivity(intent);
+                break;
+
+            case R.id.Difficile :
                 intent.putExtras(bun);
                 startActivity(intent);
                 break;

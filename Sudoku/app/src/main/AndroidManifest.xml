@@ -15,10 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".GridChoice"
-            android:label="@string/title_activity_grid_choice"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".GridChoice" />
+        <activity android:name=".loadGrid"></activity>
+        <class android:name=".drawingGrid" />
+
+
     </application>
 
 </manifest>
