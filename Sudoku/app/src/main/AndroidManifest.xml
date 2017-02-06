@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GridChoice" />
-        <activity android:name=".loadGrid"></activity>
+        <activity android:name=".loadGrid"/>
+        <activity android:name=".Grid"/>
         <class android:name=".drawingGrid" />
 
 

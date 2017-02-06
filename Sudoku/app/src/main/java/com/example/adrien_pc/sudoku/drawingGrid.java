@@ -19,68 +19,93 @@ import static com.example.adrien_pc.sudoku.R.attr.height;
 
 public class drawingGrid extends View implements View.OnTouchListener {
 
-    private static final String TAG = "Sudoku";
-    private int top, bottom, left, right;
-    private int XOFSelection = 0;
-    private int YOFSelection = 0;
-    private float tileWidth = 0f;
-    private float tileHeight = 0f;
-    private Rect rect = null;
-    private GridChoice mParams;
+    private int nbCases=9;
+
+    int [][] grid = null;
+
+    int number = 0;
 
 
     public drawingGrid(Context context, AttributeSet attrs) {
-        super(context,attrs);
-        //this.setOnTouchListener(this);
+        super(context, attrs);
+        this.setOnTouchListener(this);
     }
 
-    private void select(int x, int y){
-        XOFSelection = Math.min(Math.max(x, 0),8);
-        YOFSelection = Math.min(Math.max(y, 0),8);
-
-        invalidate();
+    public void setdrawingGrid(int[][] Grid)
+    {
+        this.grid = Grid;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         Paint p = new Paint();
-        p.setColor(Color.BLACK);
-        p.setStyle(Paint.Style.STROKE);
 
-        int gm = 100;
-
-        for (int r = 0; r<9 ;r++)
+        for (int i = 1; i<=nbCases ;i++)
         {
-            for(int c=0; c<9 ;c++){
-                top = r*gm;
-                bottom=top+gm;
-                left=c*gm;
-                right=left+gm;
-                canvas.drawRect(left, top, right, bottom, p);
+            if (i%3 ==0 )
+            {
+                p.setStrokeWidth(6);
+            }
+            else{
+                p.setStrokeWidth(3);
+            }
+            canvas.drawLine(getWidth()/9*i,0, getWidth()/9*i, getWidth(), p);
+            canvas.drawLine(0, getWidth()/9*i, getWidth(), getWidth()/9*i, p);
+        }
+
+        Paint pRect = new Paint();
+        pRect.setStyle(Paint.Style.STROKE);
+        p.setStrokeWidth(3);
+        Paint pString = new Paint();
+        pString.setTextSize(80);
+
+        for (int i = 1; i<=nbCases;i++)
+        {
+            canvas.drawRect(getWidth()/10 * i - 50, getWidth() +50, getWidth()/10*i+50, getWidth()+150, pRect);
+            canvas.drawText(String.valueOf(i), getWidth()/10*i-25, getWidth()+125, pString);
+        }
+
+        for (int i =0; i <9;i++){
+            for (int j = 0 ;j<9; j++){
+                if(grid[i][j] != 0){
+                    canvas.drawText(String.valueOf(grid[i][j]), getWidth()/9*i+65, getWidth()/9*j+85, pString);
+                }
             }
         }
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        super.onTouchEvent(event);
+        int x = (int) event.getX();
+        int y = (int) event.getY();
 
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN :
-                int x = (int) (event.getX()/tileWidth);
-                int y = (int) (event.getY()/tileHeight);
-                select(x,y);
+                for(int i = 1; i<=9; i++){
+                    if(x>= getWidth()/10*i-50 && x<= getWidth()/10*i+50 && y >= getWidth()+50&& y <= getWidth()+150)
+                    {
+                        number=i;
+                    }
+                }
+                Log.d("num", String.valueOf(number));
                 break;
             case MotionEvent.ACTION_UP:
-                break;
-            case MotionEvent.ACTION_MOVE:
+                int X = x/(getWidth()/9);
+                int Y = y/(getWidth()/9);
+                if (X<9 && Y<9){
+                    grid[X][Y] = number;
+                    Log.d("num", String.valueOf(number));
+                }
+
+                invalidate();
+
+                Log.d("X", String.valueOf(X));
+                Log.d("Y", String.valueOf(Y));
+                number=0;
                 break;
         }
+        this.invalidate();
         return true;
-    }
-
-    private void getRect(int x, int y, Rect rect) {
-        rect.set((int) (x * width), (int) (y * height), (int) (x * width + width), (int) (y * height + height));
     }
 
 

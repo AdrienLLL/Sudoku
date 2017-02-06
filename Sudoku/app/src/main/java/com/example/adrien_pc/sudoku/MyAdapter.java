@@ -11,13 +11,14 @@ import android.widget.TextView;
 import android.widget.TwoLineListItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 class MyAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<vGrille> items;
+    private List<vGrille> items;
 
-    public MyAdapter(Context context, ArrayList<vGrille> items) {
+    public MyAdapter(Context context, List<vGrille> items) {
         this.context = context;
         this.items = items;
     }

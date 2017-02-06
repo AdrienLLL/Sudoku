@@ -21,13 +21,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
-        android:text="Facile"
+        android:text="Niveau1"
         android:id="@+id/Facile" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Moyen"
+        android:text="Niveau2"
         android:id="@+id/Moyen"
         android:layout_below="@+id/Facile"
         android:layout_alignParentStart="true" />
@@ -35,7 +35,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Difficile"
+        android:text="Niveau3"
         android:id="@+id/Difficile"
         android:layout_below="@+id/Moyen"
         android:layout_alignParentStart="true" />
